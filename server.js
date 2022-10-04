@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 // Mongoose
 mongoose.connect(process.env.DB_URL); 
@@ -39,6 +40,18 @@ async function getBooks(req,res) {
     res.status(200).send(results);
   } catch (error) {
     res.status(500).send(error);
+  }
+}
+
+app.post('/book', postBooks);
+
+async function postBooks(req, res, next) {
+  console.log(req.body);
+  try {
+    const newBook = await Books.create(req.body);
+    res.status(201).send(newBook);
+  } catch (error) {
+    next(error);
   }
 }
 
