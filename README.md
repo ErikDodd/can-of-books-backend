@@ -75,10 +75,10 @@
 
 Name of feature: Lab11
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 3 hours
 
 Start time: 1:30PM
 
-Finish time: _____
+Finish time: 6:00PM
 
-Actual time needed to complete: _____
+Actual time needed to complete: 4.5 hours
