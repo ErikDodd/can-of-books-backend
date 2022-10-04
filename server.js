@@ -25,7 +25,6 @@ const Books = require('./models/book.js');
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 
-
 // Endpoints
 
 app.get('/', (req, res) => {
@@ -42,6 +41,7 @@ async function getBooks(req,res) {
     res.status(500).send(error);
   }
 }
+
 
 app.get('/test', (request, response) => {
 
