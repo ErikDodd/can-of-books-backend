@@ -70,15 +70,28 @@ async function deleteBook(req, res, next) {
   }
 }
 
+app.put('/book/:id', putBook)
 
+async function putBook(req, res, next) {
+  const id = req.params.id;
+  console.log(id);
+  try {
+    const data = req.body;
+    const options = {
+      new: true,
+      overwrite: true,
+    };
+    const updatedBook = await Books.findByIdAndUpdate(id, data, options);
+    res.status(201).send(updatedBook);
+  } catch (error) {
+    next(error);
+  }
+}
+
+app.get('*', (req, res) => {
+  res.status(404).send('Not available');
+});
 
 app.use((error, req, res) => {
   res.status(500).send(error.message);
 })
-
-// app.get('/test', (request, response) => {
-
-//   response.send('test request received')
-
-// })
-
