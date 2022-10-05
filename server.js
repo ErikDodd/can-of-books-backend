@@ -43,6 +43,7 @@ async function getBooks(req,res) {
   }
 }
 
+// Post Endpoint
 app.post('/book', postBooks);
 
 async function postBooks(req, res, next) {
@@ -55,10 +56,29 @@ async function postBooks(req, res, next) {
   }
 }
 
+// Delete Endpoint
+app.delete('/book/:id', deleteBook)
 
-app.get('/test', (request, response) => {
+async function deleteBook(req, res, next) {
+  const id = req.params._id;
+  console.log(id);
+  try {
+    await Books.findByIdAndDelete(id);
+    res.status(204).send('Succesfully Deleted Book');
+  } catch (error) {
+    next(error);
+  }
+}
 
-  response.send('test request received')
 
+
+app.use((error, req, res) => {
+  res.status(500).send(error.message);
 })
+
+// app.get('/test', (request, response) => {
+
+//   response.send('test request received')
+
+// })
 
